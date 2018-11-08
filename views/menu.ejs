@@ -77,20 +77,28 @@
     console.log(order);  
     
      
-   var element = $('<div class="row"><div class="col s8 details"><ul><li><button class="btn-small minus">-</button><button class="btn-small plus">+</button><span class="j">'+j +'</span>x ' + order[order.length - 1].name +'</li> </ul></div> <div class="col s4 price"><ul> <li><b>'
-    + order[order.length - 1].price +'</b></li></ul></div></div>') ;
+   var element = $('<div class="row"><div class="col s7 details"><ul><li><button class="btn-small minus" >-</button><button class="btn-small plus">+</button><span class="j">'+j +'</span>x ' + order[order.length - 1].name +'</li> </ul></div> <div class="col s3 price"><ul> <li><b>'
+    + order[order.length - 1].price +'</b></li></ul></div><div class="col s2">rem</div></div>') ;
    
    $('.row2').append(element);
 
    $(".minus", element).click(function(){
-           j--;
+        if (   $(this).siblings("span.j").text() > 1){
+           j-- ;
            $(this).siblings("span.j").text(j);
+           if(j<1){
+           var parents= $('this').parents(".row");
+           $('.row2').remove(parents);
+           }
+        }
+        
          //  $(".j").text(j);
           });
      $(".plus",element).click(function(){
+      if (   $(this).siblings("span.j").text() < 4){
         j++;
-        $(".j").text(j);
-           
+        $(this).siblings("span.j").text(j);
+      }
           });
 
 
