@@ -34,7 +34,7 @@
                     <%if (resturants && resturants.length){ %>
                           <ul class="collapsible">
                               <% for (var i=0; i < resturants.length; i++){%>
-                                  <li> <p><%=resturants[i].name %></p></li>
+                                  <li><a href="resturants/<%=resturants[i].code%>" <p><%=resturants[i].name %></p></li>
                                   
                                   <%}%>
                          

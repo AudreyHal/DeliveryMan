@@ -196,11 +196,17 @@ app.get('/resturants', function(req,res){
 
 
 
-app.get('/resturants/:name', function(req,res){
+app.get('/resturants/:code', function(req,res){
    // var products=[{"name":'beans', "price":"500"},{"name":'rice', "price":"400"},{"name":'beans', "price":"500"}];
-  products
+ var code= req.params.code;
+ Product.find({
+    code: code
+   }, function(err, data) {
+    if (err){ res.send('error')} 
+    else{
+  var products=data}
    res.render('menu',{products});
-});
+});});
 app.post('/signup',function(req, res) {
     var userdata= new User({
     email: req.body.email,
