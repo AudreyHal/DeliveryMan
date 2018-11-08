@@ -53,6 +53,20 @@ const User = mongoose.model('Users', user, 'Users');
 module.exports= User;
 
 
+const product = new Schema({
+    name: String,
+    price:Number,
+    code:String
+    });
+    const Product = mongoose.model('products', product, 'products');
+
+    const resturant = new Schema({
+        name: String,
+        code: String
+        
+        });
+        const Resturant = mongoose.model('resturants',resturant, 'resturants');
+
 
 app.use(session({
     secret: 'keyboard cat',
@@ -160,18 +174,32 @@ app.post('/login', function(req, res, next) {
 
   app.get('/', function(req,res){
     res.render('index');
+  
 });
 
 app.get('/signup', function(req,res){
     res.render('signup');
 });
 
+app.get('/resturants', function(req,res){
+    Resturant.find({},function(err, data) {
+        if (err){ res.send('error')} 
+        else{
+           var resturants =data.sort(function(a,b){
+               var txtA= a.name.toUpperCase();
+               var txtB= b.name.toUpperCase();
+               return (txtA<txtB)?-1: (txtA>txtB)?1:0;
+           });
+    res.render('resturants',{resturants});}
+  
+});});
 
 
 
 app.get('/resturants/:name', function(req,res){
-    var products=[{"name":'beans', "price":"500"},{"name":'rice', "price":"400"},{"name":'beans', "price":"500"}];
-    res.render('menu',{products});
+   // var products=[{"name":'beans', "price":"500"},{"name":'rice', "price":"400"},{"name":'beans', "price":"500"}];
+  products
+   res.render('menu',{products});
 });
 app.post('/signup',function(req, res) {
     var userdata= new User({
@@ -188,6 +216,10 @@ app.post('/signup',function(req, res) {
       .then((data)=> {
         console.log(data);
         res.send('Saved to database');
+        req.session.user = user;
+        req.session.user.expires = new Date(
+            Date.now() + 3 * 24 * 3600 * 1000); // session expires in 3 days
+            console.log(req.session.user);
        })
       .catch((err)=> {
         console.log(err);
