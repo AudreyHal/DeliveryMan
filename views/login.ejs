@@ -33,19 +33,20 @@
               <form action="/login" method="post">
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="password" type="password" name="password" class="validate">
+                  <input id="password" type="password" name="password">
                   <label for="password">Password</label>
                 </div>
               </div>
               
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="email" type="email" name="email" class="validate">
+                  <input id="email" type="text" name="email" >
                   <label for="email">Email</label>
                 </div>
               </div> 
               <button type="submit">SUBMIT</button> 
             </form>
+            <p class="alert alert-danger" role="alert" style="display:<%=alert%>"><%=msg%></p></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script> 
    document.addEventListener('DOMContentLoaded', function() {

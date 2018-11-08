@@ -42,6 +42,13 @@ const user = new Schema({
         });
       });
 
+      user.methods.comparePassword = function(candidatePassword, cb) {
+        bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+          if (err) return cb(err);
+          cb(null, isMatch);
+        });
+      };
+    
 const User = mongoose.model('Users', user, 'Users');
 module.exports= User;
 
@@ -207,18 +214,19 @@ app.post('/signup',function(req, res) {
  
       if (!user) {
         res.render('login',{ alert:"block", msg:"User not found"})    }
- 
-      if(user){
-           if (user.password != password){
-        res.render('login',{ alert:"block", msg:"Incorrect Password"})
-      } else{
-     /// return done(null, user);
+         if(user){  
+        user.comparePassword(password, function(err, isMatch) {
+            if (isMatch) {
+                /// return done(null, user);
         req.session.user = user;
         req.session.user.expires = new Date(
             Date.now() + 3 * 24 * 3600 * 1000); // session expires in 3 days
-            //console.log(req.session.user)
-          res.redirect('/cart');}}
-    });}});
+            console.log(req.session.user);
+         } else {
+        res.render('login',{ alert:"block", msg:"Incorrect Password"})}
+ 
+     
+   });}});}});
  
   
 app.listen(3000, ()=>{
