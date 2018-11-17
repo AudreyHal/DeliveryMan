@@ -32,18 +32,33 @@
               </ul>
      
     <div class="row1 center-block">
+      <div class="top-label"><p class="center code"><%=code%></p></div>
+      <div class="bk-img">tyjjjttygfffffffffffffffffffffffffklklklkllkklllllllllllllllllllllllllll
+        <p>er45565667676</p>
+      </div>
             <%if (products && products.length){ %>
+
                   <ul class="collapsible">
                       <% for (var i=0; i < products.length; i++){%>
                           <li> <div class="collapsible-header value1"><%=products[i].name %></span></div>
-                            <div class="collapsible-body " >price: <span class="value2"> <%=products[i].price %> </span><button  class="btn-success">Order</button></div></li>
-                          
+                            <div class="collapsible-body" > 
+                            <div class="row">
+                                <div class="col s2"><b>Price:</b></div>
+                                <div class="col s8"><span class="value2"> <%=products[i].price %> </span></div>
+                                <div class="col s2"><button  class="btn-small black waves effect btn-order">Order</button></div>
+                                </div>
+                              </div></li>
                           <%}%>
                  
                    </ul><%}%>
     </div>
-    <div class="row2 center-block container">
-        <p class="order-title"> <b>Your Order</b></p>
+ 
+    <div class="row2 center-block ">
+
+        <p class="order-title center"> <b>Your Order</b></p>
+        <div class="summary"></div>
+       <div class="order-row row"  >    <div class="col s12"><button class="submit btn-small waves-effect center black">submit</button></div></div>
+    
 </div>
 
 
@@ -65,32 +80,33 @@
 
       $(document).ready(function(){
         var order=[];
-        $('.order-title').hide();
+        $('.row2').css({display:'none'});
+       // $('.submit').css({display:'none'});
         var j;
      
-        $(".btn-success").click(function(){
+        $(".btn-order").click(function(){
           var j=1;
-          $('.order-title').show();
+          $('.row2').css({display:'block'});
+          
       var val1=  $(".active").children("div.value1").text();
       var val2=  $(".active").find("span.value2").text();
       order.push({"name":val1, "price":val2});
     console.log(order);  
     
      
-   var element = $('<div class="row"><div class="col s7 details"><ul><li><button class="btn-small minus" >-</button><button class="btn-small plus">+</button><span class="j">'+j +'</span>x ' + order[order.length - 1].name +'</li> </ul></div> <div class="col s3 price"><ul> <li><b>'
-    + order[order.length - 1].price +'</b></li></ul></div><div class="col s2">rem</div></div>') ;
+   var element = $('<div class="row order-row"><div class="col s9 details"><button class="btn-floating waves-effect red minus" >-</button><button class="btn-floating waves-effect red  plus">+</button><span class="j">'+j +'</span>x ' + order[order.length - 1].name +'</div> <div class="col s3 price"><b>'
+    + order[order.length - 1].price +'</b></div></div>') ;
    
-   $('.row2').append(element);
+   $('.summary').append(element);
 
    $(".minus", element).click(function(){
         if (   $(this).siblings("span.j").text() > 1){
            j-- ;
            $(this).siblings("span.j").text(j);
-           if(j<1){
-           var parents= $('this').parents(".row");
-           $('.row2').remove(parents);
-           }
-        }
+           
+          /**/
+           
+        }else{  $(this).parents("div.row").remove();}
         
          //  $(".j").text(j);
           });
@@ -99,16 +115,23 @@
         j++;
         $(this).siblings("span.j").text(j);
       }
-          });
-
-
-          });
-
-
-         
-
+          });    
+        
         
 
+})
+        
+        
+$(".submit").click(function(){
+  var code = $(".code").text();
+ order.push({code:code});
+ 
+$.ajax({type:"POST",data:JSON.stringify(order), url:'/cart', headers:{'Content-Type':'application/json'}, success:function(data){
+ alert(data);
+}
+})       
+        
+        });
           
     })
     

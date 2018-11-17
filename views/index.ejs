@@ -5,7 +5,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
+    <link rel="stylesheet" href="/css/stylesheet.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
@@ -16,46 +17,73 @@
                   <a href="#!" class="brand-logo">Logo</a>
                   <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                   <ul class="right hide-on-med-and-down">
-                    <li><a href="sass.html">Sass</a></li>
-                    <li><a href="badges.html">Components</a></li>
-                    <li><a href="collapsible.html">Javascript</a></li>
-                    <li><a href="mobile.html">Mobile</a></li>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/signup">Signup</a></li>
+                 
+                    <li><a href="/logout">Logout</a></li>
+                   
                   </ul>
                 </div>
               </nav>
             
-              <ul class="sidenav" id="mobile-demo">
-                <li><a href="sass.html">Sass</a></li>
-                <li><a href="badges.html">Components</a></li>
-                <li><a href="collapsible.html">Javascript</a></li>
-                <li><a href="mobile.html">Mobile</a></li>
-              </ul>
-    <div></div>     
-    <div class="row">
+          
+              <div class="row1 center-block">
+                
+                  <div class="bk-img"></div>
+                  </div>
             
-                  <div class="col s3">
-                  <a href="resturants/kilimanjaro">kilimanjaro</a>
+              <div class="board center-block">
+                <div class="row  center">
+                  <div class="col s12"><p>Get your food from any resturant in the city delivered to your door step with just a click</p></div>
+                 
                   </div>
-                  <div class="col s3">
-                    <!-- Promo Content 2 goes here -->
+                  <div class="row center border">
+                    <div class="col s12"><button class="btn-large waves-effect start ">Get Started</button></div>
                   </div>
-                  <div class="col s3">
-                    <!-- Promo Content 3 goes here -->
-                  </div>
-                  <div class="col s3">
-                        <!-- Promo Content 3 goes here -->
-                      </div>
-            
-                </div>
-                         
+              </div>
+              </div>
+              
 
-      <h1>CURE</h1>
+             <div class=" slider center-block black">
+               
+              <p class="slide center">Get your food from any resturant in the city delivered to your door step with just a click</p>
+                <p class="slide center">Massive discpount</p></div>
+             
+              </div>
+              <footer class="page-footer">
+                
+                <div class="footer-copyright">
+                  <div class="container">
+                  <p class="center">© 2014 Copyright Text</p>
+                  
+                  </div>
+                </div>
+              </footer>
+                  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script> 
    document.addEventListener('DOMContentLoaded', function() {
         var elems = document.querySelectorAll('.sidenav');
         var instances = M.Sidenav.init(elems);
-      });</script>
+      });
+      
+      
+      document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.carousel');
+    var instances = M.Carousel.init(elems);
+  });
+
+  var current = 0,
+    slides =  document.querySelectorAll('.slide');
+
+setInterval(function() {
+  for (var i = 0; i < slides.length; i++) {
+    slides[i].style.opacity = 0;
+  }
+  current = (current != slides.length - 1) ? current + 1 : 0;
+  slides[current].style.opacity = 1;
+}, 2000);
+</script>
     
   </body>
 </html>
