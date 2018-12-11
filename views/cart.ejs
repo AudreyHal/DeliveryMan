@@ -30,18 +30,44 @@
                 <li><a href="collapsible.html">Javascript</a></li>
                 <li><a href="mobile.html">Mobile</a></li>
               </ul>
-     
+      <form action="/order" method="post">
+        <div class="row">
+        
+            <div class="input-field col s12">
+              <input id="address" type="text" name="text" >
+              <label for="address">Enter Delivery address</label>
+            </div>
+          </div>   
+        
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="phone" type="text" name="phone" >
+            <label for="phone">Enter phone numberl</label>
+          </div>
+          <div class="row">
+            <p>
+              <label>
+                <input name="group1" type="radio" checked />
+                <span>Pay on Delivery</span>
+              </label>
+            </p>
+          </div> 
+          <div class="row">
+            <p>
+              <label>
+                <input name="group1" type="radio" checked />
+                <span>Pay on Delivery</span>
+              </label>
+            </p>
+          </div> 
+        </div> 
+        <div class="row">
+          <div class="col s12">
+        <button type="submit">SUBMIT</button> </div></div>
+      </form>
+ <div class="summary"></div>
    
-            <%if (order && order.length){ %>
-
-                  
-                      <% for (var i=0; i < order.length; i++){%>
-                       <div class="name">Food :<%=order[i].name %></span></div>
-                       <div class="price">Price:<%=order[i].price %> </span></div>
-                                
-                          <%}%>
-                          <div class="price">resturant:<%=order.code %> </span></div>
-                  <%}%>
+      
     </div>
  
 
@@ -55,6 +81,16 @@
         var elems = document.querySelectorAll('.sidenav');
         var instances = M.Sidenav.init(elems);
       });
+      $(document).ready(function(){
+        var order1=localStorage.getItem('order');
+        var order=JSON.parse(order1)
+        for (var i=0; i < order.length; i++){
+      var element = $('<div class="row order-row"><div class="col s9 details"><button class="btn-floating waves-effect red minus" >-</button><button class="btn-floating waves-effect red  plus">+</button><span class="j">' +'</span>x ' + order[i].name +'</div> <div class="col s3 price"><b>'
+    + order[i].price +'</b></div></div>') ;
+   
+   $('.summary').append(element);}
+      })
+
       </script>
 </body>
 </html>

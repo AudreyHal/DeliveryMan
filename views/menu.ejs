@@ -57,7 +57,7 @@
 
         <p class="order-title center"> <b>Your Order</b></p>
         <div class="summary"></div>
-       <div class="order-row row"  >    <div class="col s12"><button class="submit btn-small waves-effect center black">submit</button></div></div>
+       <div class="order-row row"  >    <div class="col s12"><button class="submit btn-small waves-effect center black" >submit</button></div></div>
     
 </div>
 
@@ -90,7 +90,8 @@
           
       var val1=  $(".active").children("div.value1").text();
       var val2=  $(".active").find("span.value2").text();
-      order.push({"name":val1, "price":val2});
+      var code = $(".code").text();
+      order.push({"name":val1, "price":val2, "code":code});
     console.log(order);  
     
      
@@ -117,21 +118,23 @@
       }
           });    
         
+          $(".submit").click(function(){
+ /* var code = $(".code").text();
+ order.push({code:code});*/
+ localStorage.setItem('order',JSON.stringify(order))
+// console.log(order)
+//$.ajax({type:"POST",data:{order:order}, url:'/cart', headers:{ContentType:'application/json',dataType:"json"}, success:function(data){
+window.location.href="/cart"
+//console.log(data)
+//}
+//})       
         
+        });       
 
 })
         
         
-$(".submit").click(function(){
-  var code = $(".code").text();
- order.push({code:code});
- 
-$.ajax({type:"POST",data:JSON.stringify(order), url:'/cart', headers:{'Content-Type':'application/json'}, success:function(data){
- alert(data);
-}
-})       
-        
-        });
+
           
     })
     

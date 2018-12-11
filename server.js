@@ -70,6 +70,15 @@ const product = new Schema({
         });
         const Resturant = mongoose.model('resturants',resturant, 'resturants');
 
+        var Order= new Schema({
+         address: String,
+         phone: Number,
+         createdAt:Date,
+         tray:Array
+          
+          });
+          var Order = mongoose.model('orders',Order, 'orders');
+
 
 app.use(session({
     secret: 'keyboard cat',
@@ -96,7 +105,23 @@ app.post('/cart', function(req,res){
   res.render('cart',{order:order})
 });
 app.get('/cart', function(req,res){
- 
+  res.render('cart');
+});
+
+app.post('/order', function(req,res){
+
+  var neworder= new Order({
+    address: req.body.email,
+    phone: req.body.password,
+     order:req.body.order});
+userdata.save()
+.then((data)=> {
+res.redirect('/');
+
+})
+.catch((err)=> {
+console.log(err);
+})
 });
 
 app.get('/resturants', function(req,res){
