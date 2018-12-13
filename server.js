@@ -74,7 +74,7 @@ const product = new Schema({
          address: String,
          phone: Number,
          createdAt:Date,
-         tray:Array
+         tray:String
           
           });
           var Order = mongoose.model('orders',Order, 'orders');
@@ -98,31 +98,8 @@ app.use(session({
 
 
 
-app.post('/cart', function(req,res){
-  //  order= JSON.parse(req.body);
-  var order=req.body;
- 
-  res.render('cart',{order:order})
-});
-app.get('/cart', function(req,res){
-  res.render('cart');
-});
 
-app.post('/order', function(req,res){
 
-  var neworder= new Order({
-    address: req.body.email,
-    phone: req.body.password,
-     order:req.body.order});
-userdata.save()
-.then((data)=> {
-res.redirect('/');
-
-})
-.catch((err)=> {
-console.log(err);
-})
-});
 
 app.get('/resturants', function(req,res){
     Resturant.find({},function(err, data) {
@@ -133,7 +110,7 @@ app.get('/resturants', function(req,res){
                var txtB= b.name.toUpperCase();
                return (txtA<txtB)?-1: (txtA>txtB)?1:0;
            });
-    res.render('resturants',{resturants});}
+    res.render('resturants',{resturants:resturants,user:req.session.user});}
   
 });});
 
@@ -150,7 +127,7 @@ app.get('/resturants/:code', function(req,res){
     if (err){ res.send('error')} 
     else{
   var products=data}
-   res.render('menu',{products, code:code});
+   res.render('menu',{products, code:code,user:req.session.user});
 });});
 
 
@@ -180,10 +157,10 @@ app.post('/signup',function(req, res) {
         req.session.user = data;
         req.session.user.expires = new Date(
             Date.now() + 3 * 24 * 3600 * 1000); // session expires in 3 days
-            console.log(req.session.user.email);
+          
        })
       .catch((err)=> {
-        console.log(err);
+        res.render('signup',{ alert:"block", msg:"An error occured. Please try again"});
       })}});});
 
 
@@ -345,8 +322,38 @@ app.post('/forgot', function(req, res, next) {
         });
       }
     ], function(err) {
-      res.redirect('/');
+      res.redirect('/login');
     });
+  });
+
+  app.use((req, res, next) => {
+    console.log(req.session.user)
+    if (req.session.user) {
+      next();
+    } else {
+     res.redirect("/login")
+    }
+  });
+
+  app.get('/cart', function(req,res){
+    res.render('cart',{status:"success", msg:" ",alert:"none",user:req.session.user})
+  });
+  
+  app.post('/order', function(req,res){
+  
+    var neworder= new Order({
+      address: req.body.address,
+      phone: req.body.phone,
+      createdAt:Date.now(),
+       tray:req.body.tray});
+   
+  neworder.save().then((data)=> {
+  //res.redirect('/');
+  res.render('cart',{status:"success", msg:"Congratulations your order has been successfully placed",alert:"block"})
+  })
+  .catch((err)=> {
+    res.render('cart',{status:"danger", msg:"Your Order was not successful",alert:"block"})
+  })
   });
 app.listen(3000, ()=>{
     console.log('Listening on port 3000');

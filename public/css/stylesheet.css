@@ -1,11 +1,16 @@
 .row1{
     width: 100%;
 }
+html{padding: 0px;
+margin:0px}
 
 body{
-    font-family:Verdana, Geneva, Tahoma, sans-serif ;
-}
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+    background-color:rgb(230, 230, 230) 
 
+}
+.alert-danger{background-color: rgb(241, 35, 35)}
+.alert-success{background-color: rgb(35, 241, 155); padding-top:5px;padding-bottom:5px }
 .h1{
     color:red;
 }
@@ -13,16 +18,32 @@ body{
     background-image:url("/images/small/pexels-photo-376464.jpeg");
     height:220px;
 }
+.bk-img2{  background-image:url("/images/small/biggfruits.jpeg");
+    background-position:center;
+    height:100vh;}
 .board{
     background-color: burlywood;
     margin-top:40px;
 }
+.body2{background-image: url("/images/small/biggfruitsjpeg");
+}
 .btn-floating{
-    line-height: 12px;
-    height:13px;
+    line-height: 13px;
+    height:18px;
     padding: 1px;
     margin-right: 3px;
-    width:10px;
+    width:15px;
+    background-color:#B30D34;
+    text-align: center;
+}
+.btn-large{
+    background-color:  #B30D34;
+   margin-top:30px; 
+    width: 80%
+}
+.btn-small{
+    background-color:  #B30D34;
+  
 }
 .center{
     text-align: center;
@@ -36,6 +57,30 @@ body{
 
 .fab{height:30px }
 
+.full-page{height:100vh;
+width:100%;
+ }
+ .list{
+     color:rgb(173, 171, 171) ;
+     width:100% ;
+    background-color: rgba(15, 8, 5, 0.8);
+   margin-top:40px;
+   padding-top:30px;
+   padding-bottom:30px;}
+   
+ .page-footer{
+     background-color: #FD6128;
+        padding: 0px
+ }
+.half1{
+    text-align: center;margin-bottom:30px
+}
+.image{padding:0px;margin: 0px }
+#email,#password,#address,#phone{color:white !important }
+.order-title{
+    text-decoration: underline;
+}
+
 .res-list {
     border-bottom:1px rgb(143, 140, 140) solid;
     padding:10px;
@@ -43,9 +88,10 @@ body{
 }
 
 .row2{
-    border:1px #f8b4b4 solid;
-    background-color: #eba6a6;
+    border:1px #ffffff solid;
+    background-color: rgba(255, 255, 255, 0.9);
 }
+.sidenav{opacity: 0.6}
 .submit{
 
     width:100%;
@@ -61,22 +107,57 @@ body{
   }
   
 .slide + .slide { opacity: 0; }
+
 .start{
    margin-bottom: 20px;
    
 }
+.text{font-size:50px;
+    margin-top:80px;  
+margin-bottom: 10px }
+.text2{  
+margin-bottom: 40px }
 .border{
     background-color: rgb(202, 168, 126);
 }
 .top-label{
 border: 1px rgb(218, 218, 218) solid;
 }
+.top-text{
+    text-align: center;
+    color: rgb(231, 230, 230);
+    font-size: 25px
+}
+
+.wrapper1{ width:100%;
+opacity:0.8;
+background-color: rgb(8, 1, 20);
+border:1px solid rgb(170, 170, 170);
+border-radius: 5px;
+margin-top:  60px;
+color: rgb(233, 233, 233);
+padding:10px;
+overflow: auto }
+
+nav{  background-color:#F8C03A }
+
+.mainDiv{
+   margin-left: 10px ;
+   color: white;
+}
+
+
+
+
 
 @media only screen and (min-width:768px){
+    
+    
     .row1{
-        width: 50%;
+        width: 70%;
     }
-
+.text{font-size:55px;
+margin-top:80px;  }
 
 .order-row{
     width: 50%
@@ -87,4 +168,25 @@ border: 1px rgb(218, 218, 218) solid;
     background-image:url("/images/small/pexels-photo-376464.jpeg");
     background-position:center;
     height:220px;
-}}
+}
+
+.bk-img2{  background-image:url("/images/small/biggfruits.jpeg");
+    background-position:center;
+    height:100vh;}
+
+    .list{
+     color:rgb(173, 171, 171) ;
+     width:50% ;
+    background-color: rgba(15, 8, 5, 0.8);
+   margin-top:40px;
+   padding-top:30px; }
+
+.wrapper1{ width:30%;
+    opacity:0.8;
+background-color: rgb(8, 1, 20);
+border:1px solid rgb(170, 170, 170);
+border-radius: 5px;
+margin-top:  100px;
+color: rgb(233, 233, 233);
+padding:10px;
+overflow: auto }}

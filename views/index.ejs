@@ -1,55 +1,51 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="/css/stylesheet.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  </head>
+    <head>
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link rel="stylesheet" href="/css/stylesheet.css">
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      </head>
 
   <body>
         <nav>
                 <div class="nav-wrapper">
                   <a href="#!" class="brand-logo">Logo</a>
-                  <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                  <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">Menu</i></a>
                   <ul class="right hide-on-med-and-down">
+                      <%if (!user){ %>
                     <li><a href="/login">Login</a></li>
                     <li><a href="/signup">Signup</a></li>
-                 
+                    <%}%>
+                    <%if (user){ %>
                     <li><a href="/logout">Logout</a></li>
-                   
+                    <%}%>
                   </ul>
                 </div>
               </nav>
+
+              <ul class="sidenav" id="mobile-demo">
+                  <%if (!user){ %>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/signup">Signup</a></li>
+                    <%}%>
+                    <%if (user){ %>
+                    <li><a href="/logout">Logout</a></li>
+                    <%}%>
+                </ul>
             
           
-              <div class="row1 center-block">
-                
-                  <div class="bk-img"></div>
-                  </div>
-            
-              <div class="board center-block">
-                <div class="row  center">
-                  <div class="col s12"><p>Get your food from any resturant in the city delivered to your door step with just a click</p></div>
-                 
-                  </div>
-                  <div class="row center border">
-                    <div class="col s12"><button class="btn-large waves-effect start ">Get Started</button></div>
-                  </div>
-              </div>
-              </div>
-              
-
-             <div class=" slider center-block black">
-               
-              <p class="slide center">Get your food from any resturant in the city delivered to your door step with just a click</p>
-                <p class="slide center">Massive discpount</p></div>
-             
-              </div>
+              <div class="row full-page" style="background-image:'/images/small/biggfruits.jpg'">
+                <div class="col l6 s12 half1">
+                  <p class="text"><b>Delivery man</b></p>
+                  <p class ="text2">Get your tasty food from resturants acreoss the country delivered to your doorstep </p>
+                  <a href="/resturants" class="btn-large waves-effect #B30D34"> Order Now</a>
+                </div>
+                <div class="col l6  s12 image " style="padding:0px"><img src="/images/small/biggfruits.jpeg" style="margin-top:10px" class="responsive-img"></div>
+                </div>
               <footer class="page-footer">
                 
                 <div class="footer-copyright">
@@ -61,29 +57,11 @@
               </footer>
                   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script> 
+    <script> 
    document.addEventListener('DOMContentLoaded', function() {
         var elems = document.querySelectorAll('.sidenav');
         var instances = M.Sidenav.init(elems);
-      });
-      
-      
-      document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.carousel');
-    var instances = M.Carousel.init(elems);
-  });
-
-  var current = 0,
-    slides =  document.querySelectorAll('.slide');
-
-setInterval(function() {
-  for (var i = 0; i < slides.length; i++) {
-    slides[i].style.opacity = 0;
-  }
-  current = (current != slides.length - 1) ? current + 1 : 0;
-  slides[current].style.opacity = 1;
-}, 2000);
-</script>
+      });</script>
     
   </body>
 </html>

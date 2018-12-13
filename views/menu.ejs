@@ -11,30 +11,36 @@
   </head>
 
   <body>
-        <nav>
-                <div class="nav-wrapper">
-                  <a href="#!" class="brand-logo">Logo</a>
-                  <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                  <ul class="right hide-on-med-and-down">
-                    <li><a href="sass.html">Sass</a></li>
-                    <li><a href="badges.html">Components</a></li>
-                    <li><a href="collapsible.html">Javascript</a></li>
-                    <li><a href="mobile.html">Mobile</a></li>
-                  </ul>
-                </div>
-              </nav>
-            
-              <ul class="sidenav" id="mobile-demo">
-                <li><a href="sass.html">Sass</a></li>
-                <li><a href="badges.html">Components</a></li>
-                <li><a href="collapsible.html">Javascript</a></li>
-                <li><a href="mobile.html">Mobile</a></li>
-              </ul>
+      <nav>
+          <div class="nav-wrapper">
+            <a href="#!" class="brand-logo">Logo</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">Menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <%if (!user){ %>
+              <li><a href="/login">Login</a></li>
+              <li><a href="/signup">Signup</a></li>
+              <%}%>
+              <%if (user){ %>
+              <li><a href="/logout">Logout</a></li>
+              <%}%>
+            </ul>
+          </div>
+        </nav>
+
+        <ul class="sidenav" id="mobile-demo">
+            <%if (!user){ %>
+              <li><a href="/login">Login</a></li>
+              <li><a href="/signup">Signup</a></li>
+              <%}%>
+              <%if (user){ %>
+              <li><a href="/logout">Logout</a></li>
+              <%}%>
+          </ul>
      
     <div class="row1 center-block">
-      <div class="top-label"><p class="center code"><%=code%></p></div>
-      <div class="bk-img">tyjjjttygfffffffffffffffffffffffffklklklkllkklllllllllllllllllllllllllll
-        <p>er45565667676</p>
+      <div class="top-label"><p class="center code "><%=code%></p></div>
+      <div class="bk-img">
+      
       </div>
             <%if (products && products.length){ %>
 
@@ -45,7 +51,7 @@
                             <div class="row">
                                 <div class="col s2"><b>Price:</b></div>
                                 <div class="col s8"><span class="value2"> <%=products[i].price %> </span></div>
-                                <div class="col s2"><button  class="btn-small black waves effect btn-order">Order</button></div>
+                                <div class="col s2"><button  class="btn-small  waves effect btn-order">Order</button></div>
                                 </div>
                               </div></li>
                           <%}%>
@@ -55,11 +61,13 @@
  
     <div class="row2 center-block ">
 
-        <p class="order-title center"> <b>Your Order</b></p>
+        <p class="order-title center "> <b>Your Order</b></p>
         <div class="summary"></div>
-       <div class="order-row row"  >    <div class="col s12"><button class="submit btn-small waves-effect center black" >submit</button></div></div>
+       <div class="order-row row"  >    <div class="col s12"><button class="submit btn-small waves-effect center " >submit</button></div></div>
     
 </div>
+
+      
 
 
 
@@ -81,8 +89,7 @@
       $(document).ready(function(){
         var order=[];
         $('.row2').css({display:'none'});
-       // $('.submit').css({display:'none'});
-        var j;
+         var j;
      
         $(".btn-order").click(function(){
           var j=1;
@@ -95,7 +102,7 @@
     console.log(order);  
     
      
-   var element = $('<div class="row order-row"><div class="col s9 details"><button class="btn-floating waves-effect red minus" >-</button><button class="btn-floating waves-effect red  plus">+</button><span class="j">'+j +'</span>x ' + order[order.length - 1].name +'</div> <div class="col s3 price"><b>'
+   var element = $('<div class="row order-row"><div class="col s9 details"><button class="btn-floating waves-effect minus" >-</button><button class="btn-floating waves-effect plus">+</button><span class="j">'+j +'</span>x ' + order[order.length - 1].name +'</div> <div class="col s3 price"><b>'
     + order[order.length - 1].price +'</b></div></div>') ;
    
    $('.summary').append(element);
@@ -119,15 +126,9 @@
           });    
         
           $(".submit").click(function(){
- /* var code = $(".code").text();
- order.push({code:code});*/
- localStorage.setItem('order',JSON.stringify(order))
-// console.log(order)
-//$.ajax({type:"POST",data:{order:order}, url:'/cart', headers:{ContentType:'application/json',dataType:"json"}, success:function(data){
+  localStorage.setItem('order',JSON.stringify(order))
 window.location.href="/cart"
-//console.log(data)
-//}
-//})       
+       
         
         });       
 

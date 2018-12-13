@@ -5,12 +5,13 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
+    <link rel="stylesheet" href="/css/stylesheet.css">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
 
   <body>
+      <div class="bk-img2">
         <nav>
                 <div class="nav-wrapper">
                   <a href="#!" class="brand-logo">Logo</a>
@@ -30,23 +31,33 @@
                 <li><a href="collapsible.html">Javascript</a></li>
                 <li><a href="mobile.html">Mobile</a></li>
               </ul>
+              <div class="wrapper1 center-block">
               <form action="/signup" method="POST">
+                <div class="row">
+                    <p class="center top-text">Sign Up </p></div> 
               <div class="row">
                 <div class="input-field col s12">
-                  <input  type="password" name="password" >
+                  <input  type="password" name="password" id="password" >
                   <label for="password">Password</label>
                 </div>
               </div>
             
               <div class="row">
                 <div class="input-field col s12">
-                  <input  type="text" name="email" >
+                  <input  type="text" name="email" id="email">
                   <label for="email">Email</label>
                 </div>
               </div>  
-              <button type="submit" class="submit">SUBMIT</button>
+              <div class="row center">
+                  <div class="col s12">
+                <button class=" btn-large waves-effect white" style="width:100%; color:black" type="submit">SUBMIT</button> </div></div>
+              
             </form>
-            <p><%=msg %></p>
+            <p class="alert alert-danger center" role="alert" style="display:<%=alert%>"><%=msg%></p>
+            <div class="row">
+                 <div class="col s12 center"><a href="/login" class="left signuplink center"> Returning Customer? Login Here</a></div>
+                 
+     </div></div></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script> 
    document.addEventListener('DOMContentLoaded', function() {
