@@ -65,7 +65,7 @@ const product = new Schema({
 
     const resturant = new Schema({
         name: String,
-        code: String
+      
         
         });
         const Resturant = mongoose.model('resturants',resturant, 'resturants');
@@ -119,8 +119,8 @@ app.get('/resturants', function(req,res){
 
 
 
-app.get('/resturants/:code', function(req,res){
-    var code= req.params.code;
+app.get('/resturants/:name', function(req,res){
+    var code= req.params.name;
  Product.find({
     code: code
    }, function(err, data) {
@@ -349,10 +349,10 @@ app.post('/forgot', function(req, res, next) {
    
   neworder.save().then((data)=> {
   //res.redirect('/');
-  res.render('cart',{status:"success", msg:"Congratulations your order has been successfully placed",alert:"block"})
+  res.render('cart',{status:"success", msg:"Congratulations your order has been successfully placed",alert:"block",user:req.session.user})
   })
   .catch((err)=> {
-    res.render('cart',{status:"danger", msg:"Your Order was not successful",alert:"block"})
+    res.render('cart',{status:"danger", msg:"Your Order was not successful",alert:"block",user:req.session.user})
   })
   });
 app.listen(3000, ()=>{
