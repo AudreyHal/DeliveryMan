@@ -7,7 +7,7 @@ const mongoose= require('mongoose');
 
 const crypto=require('crypto');
 var async = require('async');
-const {check} =require('express-validator/check')
+
 const app= express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}))
