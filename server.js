@@ -4,7 +4,6 @@ const nodemailer = require('nodemailer');
 const session = require('express-session');
 const bcrypt = require('bcryptjs');
 const mongoose= require('mongoose');
-
 const crypto=require('crypto');
 var async = require('async');
 
@@ -13,7 +12,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}))
 app.set('view engine','ejs');
 app.use(express.static('public'));
-
 
 mongoose.connect('mongodb://localhost/app');
 
