@@ -4,7 +4,7 @@ const nodemailer = require('nodemailer');
 const session = require('express-session');
 const bcrypt = require('bcryptjs');
 const mongoose= require('mongoose');
-const LocalStrategy = require('passport-local').Strategy;
+
 const crypto=require('crypto');
 var async = require('async');
 const {check} =require('express-validator/check')
