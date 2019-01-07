@@ -10,7 +10,7 @@ body{
 
 }
 .alert-danger{background-color: rgb(241, 35, 35)}
-.alert-success{background-color: rgb(35, 241, 155); padding-top:5px;padding-bottom:5px }
+.alert-success{background-color: rgb(21, 214, 102); padding-top:5px;padding-bottom:5px }
 .h1{
     color:red;
 }
@@ -139,7 +139,7 @@ color: rgb(233, 233, 233);
 padding:10px;
 overflow: auto }
 
-nav{  background-color:#F8C03A }
+nav{  background-color:rgb(248, 172, 58) }
 
 .mainDiv{
    margin-left: 10px ;

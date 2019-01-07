@@ -6,6 +6,7 @@ const bcrypt = require('bcryptjs');
 const mongoose= require('mongoose');
 const crypto=require('crypto');
 var async = require('async');
+const dotenv=require('dotenv').config({silent:true});
 
 const app= express();
 const port=process.env.PORT || 3000;
@@ -14,7 +15,9 @@ app.use(bodyParser.urlencoded({extended:true}))
 app.set('view engine','ejs');
 app.use(express.static('public'));
 
-mongoose.connect('mongodb://localhost/app');
+//mongoose.connect('mongodb://localhost/app');
+var url=process.env.MONGO_URI;
+mongoose.connect(url);
 
 const Schema = mongoose.Schema;
 const user = new Schema({
@@ -64,8 +67,7 @@ const product = new Schema({
 
     const resturant = new Schema({
         name: String,
-      
-        
+             
         });
         const Resturant = mongoose.model('resturants',resturant, 'resturants');
 
