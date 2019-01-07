@@ -8,6 +8,7 @@ const crypto=require('crypto');
 var async = require('async');
 
 const app= express();
+const port=process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}))
 app.set('view engine','ejs');
@@ -353,6 +354,6 @@ app.post('/forgot', function(req, res, next) {
     res.render('cart',{status:"danger", msg:"Your Order was not successful",alert:"block",user:req.session.user})
   })
   });
-app.listen(3000, ()=>{
-    console.log('Listening on port 3000');
+app.listen(port, ()=>{
+   
        });
