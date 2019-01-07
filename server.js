@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({extended:true}))
 app.set('view engine','ejs');
 app.use(express.static('public'));
 
-//mongoose.connect('mongodb://localhost/app');
+
 var url=process.env.MONGO_URI;
 mongoose.connect(url);
 
