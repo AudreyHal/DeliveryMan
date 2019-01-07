@@ -2,14 +2,14 @@
     width: 100%;
 }
 html{padding: 0px;
-margin:0px}
+margin:0px}    
 
 body{
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
     background-color:rgb(230, 230, 230) 
 
 }
-.alert-danger{background-color: rgb(241, 35, 35)}
+.alert-danger{background-color: rgb(241, 35, 35)} 
 .alert-success{background-color: rgb(21, 214, 102); padding-top:5px;padding-bottom:5px }
 .h1{
     color:red;
