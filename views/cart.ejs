@@ -74,7 +74,7 @@
           <div class="row">
             <p>
               <label>
-                <input name="group1" type="radio" checked />
+                <input name="group1" type="radio" checked onclick="pay3()"/>
                 <span>Pay via credit or debit card</span>
               </label>
             </p>
@@ -96,9 +96,57 @@
           
             
         </div>
-   
+        <button onclick="pay3()" src="https://voguepay.com/images/buttons/make_payment_blue.png">Pay function call</button>  
       
-    
+    <div><form id='payform' onsubmit='return false;' method='POST' action='https://voguepay.com/pay/'>
+      <input type='hidden' name='v_merchant_id' value=' DEMO' />
+      <input type='hidden' name='merchant_ref' value='234-567-890' />
+      <input type='hidden' name='memo' value='Bulk order from McAckney Web Shop' />
+      <input type='hidden' name='notify_url' value='//www.mydomain.com/notification.php' />
+      <input type='hidden' name='success_url' value='//www.mydomain.com/thank_you.html' />
+      <input type='hidden' name='fail_url' value='//www.mydomain.com/failed.html' />
+      
+    ##Use notify url if you want a transaction response to be sent to the notify##
+    <input type='hidden' name='notify_url' value='//www.mydomain.com/notification.php' />
+
+    ##Success and fail URL are not required if integration method is inline.##
+    ##These are to be uses if you are using the form redirect method.##
+    <input type='hidden' name='success_url' value='//www.mydomain.com/thank_you.html' />
+    <input type='hidden' name='fail_url' value='//www.mydomain.com/failed.html' />
+
+    <input type='hidden' name='total' value='13000' />
+    ##notification triggers for inline payments only##
+    <input type='hidden' name='closed' value='closedFunction'>
+    <input type='hidden' name='success' value='successFunction'>
+    <input type='hidden' name='failed' value='failedFunction'>
+  
+      <input type='hidden' name='item_1' value='Face Cap' />
+      <input type='hidden' name='description_1' value='Blue Zizi facecap' />
+      <input type='hidden' name='price_1' value='2000' />
+  
+      <input type='hidden' name='item_2' value='Laban T-shirt' />
+      <input type='hidden' name='description_2' value='Green XXL' />
+      <input type='hidden' name='price_2' value='3000' />
+  
+      <input type='hidden' name='item_3' value='Black Noni Shoe' />
+      <input type='hidden' name='description_3' value='Size 42' />
+      <input type='hidden' name='price_3' value='8000' />
+  
+      <input type='hidden' name='developer_code' value='pq7778ehh9YbZ' />
+      <input type='hidden' name='store_id' value='25' />
+  
+      <input type='hidden' name='total' value='13000' />
+  
+      <input type='hidden' name='name' value='Customer name'/>
+      <input type='hidden' name='address' value='Customer Address'/>
+      <input type='hidden' name='city' value='Customer City'/>
+      <input type='hidden' name='state' value='Customer State'/>
+      <input type='hidden' name='zipcode' value='Customer Zip/Post Code'/>
+      <input type='hidden' name='email' value='Customer email'/>
+      <input type='hidden' name='phone' value= 'Customer phone '/>
+      <input type='image' src='http://voguepay.com/images/buttons/buynow_blue.png' alt='Submit' />
+  </form> 
+                              </div>
 
  
 
@@ -106,6 +154,7 @@
    
       <script src="/jquery/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="//voguepay.com/js/voguepay.js"></script>
   <script> 
    document.addEventListener('DOMContentLoaded', function() {
       
@@ -132,5 +181,60 @@
   //  $('.mainDiv').append(tray);
   //  $('.tid').val(order[i].name);
 }})
+      </script>
+      <script>
+        closedFunction=function() {
+            alert('window closed');
+        }
+    
+         successFunction=function(transaction_id) {
+            alert('Transaction was successful, Ref: '+transaction_id)
+        }
+    
+         failedFunction=function(transaction_id) {
+             alert('Transaction was not successful, Ref: '+transaction_id)
+        }
+    </script>
+                                    
+      <script>
+         function pay3() {
+             Voguepay.init({
+                 v_merchant_id: 'demo',
+                 total: 1500,
+                 notify_url: 'http://domain.com/notification.php',
+                 cur: 'NGN',
+                 merchant_ref: 'ref123',
+                 memo: 'Payment for shirt',
+                 recurrent: true,
+                 frequency: 10,
+                 developer_code: '5a61be72ab323',
+                 store_id: 1,
+                 loadText:'Custom load text',
+                 items: [
+                     {
+                         name: "Item name 1",
+                         description: "Description 1",
+                         price: 500
+                     },
+                     {
+                         name: "Item name 2",
+                         description: "Description 2",
+                         price: 1000
+                     }
+                 ],
+                 customer: {
+                    name: 'Customer name',
+                    address: 'Customer address',
+                    city: 'Customer city',
+                    state: 'Customer state',
+                    zipcode: 'Customer zip/post code',
+                    email: 'Customer email',
+                    phone: 'Customer phone'
+                },
+                 closed:closedFunction,
+                 success:successFunction,
+                 failed:failedFunction
+             });
+         }
       </script>
 </body>

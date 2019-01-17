@@ -128,7 +128,7 @@ app.get('/resturants/:name', function(req,res){
     if (err){ res.send('error')} 
     else{
   var products=data}
-   res.render('menu',{products, code:code,user:req.session.user});
+   res.render('menu',{products, code:code,user:req.session.user,status:"success", msg:" ",alert:"none"});
 });});
 
 
@@ -244,8 +244,8 @@ app.post('/forgot', function(req, res, next) {
             port: 465,
             secure: true,
           auth: {
-            user: '!!YOUR GMAIL USERNAME',
-            pass: '!!YOUR GMAIL PASSWORD'
+            user: 'chiomahalim@gmail.com',
+            pass: '@google.com/'
           }
         });
         var mailOptions = {
@@ -306,8 +306,8 @@ app.post('/forgot', function(req, res, next) {
             port: 465,
             secure: true,
           auth: {
-            user: 'YOUR GMAIL USERNAME',
-            pass: '@yahoo.com/'
+            user: 'chiomahalim@gmail.com',
+            pass: '@google.com/'
           }
         });
         var mailOptions = {
@@ -322,7 +322,7 @@ app.post('/forgot', function(req, res, next) {
           done(err);
         });
       }
-    ], function(err) {
+    ], function(err) { 
       res.redirect('/login');
     });
   });
@@ -346,14 +346,15 @@ app.post('/forgot', function(req, res, next) {
       address: req.body.address,
       phone: req.body.phone,
       createdAt:Date.now(),
-       tray:req.body.tray});
+      // tray:req.body.tray
+    });
    
   neworder.save().then((data)=> {
   //res.redirect('/');
-  res.render('cart',{status:"success", msg:"Congratulations your order has been successfully placed",alert:"block",user:req.session.user})
+  res.render('menu',{status:"success",  code:code,user:req.session.user,msg:"Congratulations your order has been successfully placed",alert:"block",user:req.session.user})
   })
   .catch((err)=> {
-    res.render('cart',{status:"danger", msg:"Your Order was not successful",alert:"block",user:req.session.user})
+    res.render('menu',{status:"danger", code:code,user:req.session.user, msg:"Your Order was not successful",alert:"block",user:req.session.user})
   })
   });
 app.listen(port, ()=>{
