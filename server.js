@@ -102,34 +102,7 @@ app.use(session({
 
 
 
-app.get('/resturants', function(req,res){
-    Resturant.find({},function(err, data) {
-        if (err){ res.send('error')} 
-        else{
-           var resturants =data.sort(function(a,b){
-               var txtA= a.name.toUpperCase();
-               var txtB= b.name.toUpperCase();
-               return (txtA<txtB)?-1: (txtA>txtB)?1:0;
-           });
-    res.render('resturants',{resturants:resturants,user:req.session.user});}
-  
-});});
 
-
-
-
-
-
-app.get('/resturants/:name', function(req,res){
-    var code= req.params.name;
- Product.find({
-    code: code
-   }, function(err, data) {
-    if (err){ res.send('error')} 
-    else{
-  var products=data}
-   res.render('menu',{products, code:code,user:req.session.user,status:"success", msg:" ",alert:"none"});
-});});
 
 
 app.get('/signup', function(req,res){
@@ -154,11 +127,11 @@ app.post('/signup',function(req, res) {
                     password: req.body.password});
       userdata.save()
       .then((data)=> {
-              res.redirect('/');
+            
         req.session.user = data;
         req.session.user.expires = new Date(
             Date.now() + 3 * 24 * 3600 * 1000); // session expires in 3 days
-          
+            res.redirect('/');
        })
       .catch((err)=> {
         res.render('signup',{ alert:"block", msg:"An error occured. Please try again"});
@@ -244,8 +217,8 @@ app.post('/forgot', function(req, res, next) {
             port: 465,
             secure: true,
           auth: {
-            user: 'chiomahalim@gmail.com',
-            pass: '@google.com/'
+            user: '',
+            pass: ''
           }
         });
         var mailOptions = {
@@ -306,8 +279,8 @@ app.post('/forgot', function(req, res, next) {
             port: 465,
             secure: true,
           auth: {
-            user: 'chiomahalim@gmail.com',
-            pass: '@google.com/'
+            user: '',
+            pass: ''
           }
         });
         var mailOptions = {
@@ -336,9 +309,45 @@ app.post('/forgot', function(req, res, next) {
     }
   });
 
+  app.get('/resturants', function(req,res){
+    Resturant.find({},function(err, data) {
+        if (err){ res.send('error')} 
+        else{
+           var resturants =data.sort(function(a,b){
+               var txtA= a.name.toUpperCase();
+               var txtB= b.name.toUpperCase();
+               return (txtA<txtB)?-1: (txtA>txtB)?1:0;
+           });
+    res.render('resturants',{resturants:resturants,user:req.session.user});}
+  
+});});
+
+
+
+
+
+
+app.get('/resturants/:name', function(req,res){
+    var code= req.params.name;
+ Product.find({
+    code: code
+   }, function(err, data) {
+    if (err){ res.send('error')} 
+    else{
+  var products=data}
+ 
+   res.render('menu',{products, code:code,user:req.session.user,status:"success", msg:" ",alert:"none"});
+});});
+
+
+
   app.get('/cart', function(req,res){
     res.render('cart',{status:"success", msg:" ",alert:"none",user:req.session.user})
   });
+
+ 
+
+    
   
   app.post('/order', function(req,res){
   
@@ -348,13 +357,13 @@ app.post('/forgot', function(req, res, next) {
       createdAt:Date.now(),
       // tray:req.body.tray
     });
-   
+   if(req.body.address==""|| req.body.phone==""){res.render('done',{status:"danger", user:req.session.user, msg:"Please fill in all fields",alert:"block",user:req.session.user})}
   neworder.save().then((data)=> {
   //res.redirect('/');
-  res.render('menu',{status:"success",  code:code,user:req.session.user,msg:"Congratulations your order has been successfully placed",alert:"block",user:req.session.user})
+  res.render('done',{status:"success",  user:req.session.user,msg:"Congratulations!! Your order has been successfully placed",alert:"block",user:req.session.user})
   })
   .catch((err)=> {
-    res.render('menu',{status:"danger", code:code,user:req.session.user, msg:"Your Order was not successful",alert:"block",user:req.session.user})
+    res.render('done',{status:"danger", user:req.session.user, msg:"Your Order was not successful",alert:"block",user:req.session.user})
   })
   });
 app.listen(port, ()=>{

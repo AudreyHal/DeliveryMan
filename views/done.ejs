@@ -41,153 +41,11 @@
      
     <div class="row1 center-block">
 
-      <div class="bk-img">
-        <p class="center code pp "><%=code%></p>
+      <div class="bk-img center">
+        <p class="center code <%=status%> "><%=msg%></p>
+        <a href="/resturants" class="btn-small waves-effect #B30D34"> Back</a>
       </div>
-            <%if (products && products.length){ %>
-
-                  <ul class="collapsible">
-                      <% for (var i=0; i < products.length; i++){%>
-                          <li> <div class="collapsible-header value1"><%=products[i].name %></span></div>
-                            <div class="collapsible-body" > 
-                            <div class="row">
-                                <div class="col s2"><b>Price:</b></div>
-                                <div class="col s8"><span class="value2"> <%=products[i].price %> </span></div>
-                                <div class="col s2"><button  class="btn-small  waves effect btn-order">Order</button></div>
-                                </div>
-                              </div></li>
-                          <%}%>
-                 
-                   </ul><%}%>
-    </div>
- 
-    <div class="row2 center-block ">
-
-        <p class="order-title center "> <b>Your Order</b></p>
-        <div class="summary"></div>
-       <div class="order-row row"  >    <div class="col s12"><a href="#modal1" class="submit btn-small waves-effect center modal-trigger" >submit</a></div></div>
-    
-</div>
-
- 
-
-  <!-- Modal Structure -->
-  <div id="modal1" class="modal" >
-    <div class="modal-content ">
-      <form action="/order" method="post" class="mainDiv" >
-        <div >
-            <div class="row">
-                <p class="center ">PLACE ORDER</p></div> 
-        <div class="row ">
-        
-          <div class=" col s4">
-            <p>Address</p>
-          </div>
-          <div class=" col s8">
-            <textarea name="address" id="address" style="background-color:white; border:solid white 1px; height:50px; border-radius:10px; color:black"></textarea>
-          </div>
-          </div>
-       
-          <div class="row ">
-            
-              <div class=" col s4">
-                <p>Phone</p>
-              </div>
-              <div class=" col s8">
-                <textarea name="phone" id="phone" style="background-color:white; border:solid white 1px; height:50px; border-radius:10px"></textarea>
-              </div>
-              </div>
-        
-      
-              <div class="row " hidden="true" >
-                <div class="input-field col s12">
-                  <input id="tray" type="text"  name="tray"  >
-                  <label for="tray" >Tray</label>
-                </div>
-                </div>
-            <div class="row" style="margin-top:5px; margin-bottom:2px; font-size:12px">
-              <div class=" col s2">
-                <label >
-                  <input name="group1" type="radio" checked onclick="pay3()" class="with-gap"/>
-                  <span ></span>
-                  </label>
-                </div>
-              <div class=" col s10">
-              <span class="span">Pay on Delivery</span>
              </div>
-            </div>
-          <div class="row" style="margin-top:2px; font-size:12px">
-            <div class=" col s2">
-              <label >
-                <input name="group1" type="radio"  onclick="pay3()" class="with-gap" />
-                <span ></span>
-                </label>
-              </div>
-            <div class=" col s10">
-            <span class="span">Pay via credit or debit card</span>
-            </div>
-
-          </div> 
-      
-        <div class="row center">
-          <div class="col s12">
-        <button type="submit " class="btn-small btnstyle waves-effect center ">SUBMIT</button> </div></div>
-          </div>
-          <div class="row center alert-<%=status%>" style="display:<%=alert%>">
-            <p class="alert" role="alert" ><%=msg%></p>
-            </div>
-      </form>
-    </div>
-  
-  </div>
-  <div><form id='payform' onsubmit='return false;' method='POST' action='https://voguepay.com/pay/'>
-    <input type='hidden' name='v_merchant_id' value=' DEMO' />
-    <input type='hidden' name='merchant_ref' value='234-567-890' />
-    <input type='hidden' name='memo' value='Bulk order from McAckney Web Shop' />
-    <input type='hidden' name='notify_url' value='//www.mydomain.com/notification.php' />
-    <input type='hidden' name='success_url' value='//www.mydomain.com/thank_you.html' />
-    <input type='hidden' name='fail_url' value='//www.mydomain.com/failed.html' />
-    
-
-  <input type='hidden' name='notify_url' value='//www.mydomain.com/notification.php' />
-
-
-  <input type='hidden' name='success_url' value='//www.mydomain.com/thank_you.html' />
-  <input type='hidden' name='fail_url' value='//www.mydomain.com/failed.html' />
-
-  <input type='hidden' name='total' value='13000' />
-
-  <input type='hidden' name='closed' value='closedFunction'>
-  <input type='hidden' name='success' value='successFunction'>
-  <input type='hidden' name='failed' value='failedFunction'>
-
-    <input type='hidden' name='item_1' value='Face Cap' />
-    <input type='hidden' name='description_1' value='Blue Zizi facecap' />
-    <input type='hidden' name='price_1' value='2000' />
-
-    <input type='hidden' name='item_2' value='Laban T-shirt' />
-    <input type='hidden' name='description_2' value='Green XXL' />
-    <input type='hidden' name='price_2' value='3000' />
-
-    <input type='hidden' name='item_3' value='Black Noni Shoe' />
-    <input type='hidden' name='description_3' value='Size 42' />
-    <input type='hidden' name='price_3' value='8000' />
-
-    <input type='hidden' name='developer_code' value='pq7778ehh9YbZ' />
-    <input type='hidden' name='store_id' value='25' />
-
-    <input type='hidden' name='total' value='13000' />
-
-    <input type='hidden' name='name' value='Customer name'/>
-    <input type='hidden' name='address' value='Customer Address'/>
-    <input type='hidden' name='city' value='Customer City'/>
-    <input type='hidden' name='state' value='Customer State'/>
-    <input type='hidden' name='zipcode' value='Customer Zip/Post Code'/>
-    <input type='hidden' name='email' value='Customer email'/>
-    <input type='hidden' name='phone' value= 'Customer phone '/>
-
-</form> 
-                            </div>
           
 
       
@@ -333,12 +191,12 @@ window.location.href="/cart"
                 notify_url: 'http://domain.com/notification.php',
                 cur: 'NGN',
                 merchant_ref: 'ref123',
-                memo: 'Payment for items',
+                memo: 'Payment for shirt',
                 recurrent: true,
                 frequency: 10,
                 developer_code: '5a61be72ab323',
                 store_id: 1,
-                loadText:'Loading payment gateway',
+                loadText:'Custom load text',
                 items: [
                     {
                         name: "Item name 1",

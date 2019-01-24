@@ -15,7 +15,7 @@
           <nav>
               <div class="nav-wrapper">
                 <a href="#!" class="brand-logo"></a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">Menu</i></a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <%if (!user){ %>
                   <li><a href="/login">Login</a></li>
@@ -41,11 +41,11 @@
               </ul>
             
               <div class="list center-block">
-                <p class="center"><b>Choose from our list of resturants</b></p>
+                <div class="list-head"> <p class="center"><b>Select a resturant</b></p></div>
                     <%if (resturants && resturants.length){ %>
                           <ul >
                               <% for (var i=0; i < resturants.length; i++){%>
-                                  <li class="res-list"><a href="resturants/<%=resturants[i].name%>" ><%=resturants[i].name %></a></li>
+                                  <li class="res-list center"><a href="resturants/<%=resturants[i].name%>" ><span class="list-item"><%=resturants[i].name %></span></a></li>
                                   
                                   <%}%>
                          
