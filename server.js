@@ -17,7 +17,7 @@ app.use(express.static('public'));
 
 
 var url=process.env.MONGO_URI;
-mongoose.connect(url);
+mongoose.connect("mongodb://localhost:27017/app");
 
 const Schema = mongoose.Schema;
 const user = new Schema({
@@ -91,19 +91,79 @@ app.use(session({
 
 
 
-  app.get('/', function(req,res){
-    res.render('index',{user:req.session.user});
-  if(user){console.log(user.email)}
+
+app.get('/admin/dashboard', function(req,res){
+  res.render('admin-dashboard',{user:req.session.user});
+if(user){console.log(user.email)}
 });
 
 
 
 
+app.get('/admin/resturants', function(req,res){
+  Resturant.find({},function(err, data) {
+      if (err){ res.send('error')} 
+      else{
+        var resturants =data.sort(function(a,b){
+          var txtA= a.name.toUpperCase();
+          var txtB= b.name.toUpperCase();
+          return (txtA<txtB)?-1: (txtA>txtB)?1:0;
+         });
+  res.render('admin-resturants',{resturants:resturants,user:req.session.user});}
+
+});});
+ 
+ 
+app.post('/admin-add',function(req,res){
+  var name=req.body.name;
+  Resturant.findOne({
+  name: name
+   }, function(err,resturant) {
+     if (err) 
+     { res.send("An error occured"); } 
+
+     if (resturant) {
+      res.send("User exists");   }
+        if(!resturant){  
+            var rest= new Resturant({
+              name:req.body.name
+               });
+  rest.save() 
+  .then((data)=> {
+     res.redirect('/admin/resturants');
+})
+.catch((err)=> {
+res.send("An error occured");
+})
+}})     })
+
+
+app.get('/admin/resturants/:name', function(req,res){
+  var code= req.params.name;
+Product.find({
+  code: code
+ }, function(err, data) {
+  if (err){ res.send('error')} 
+  else{
+var products=data}
+
+ res.render('admin-menu',{products, code:code,user:req.session.user,status:"success", msg:" ",alert:"none"});
+});});
+
+app.post("/admin/remove/products", function(req,res){
+  var name=req.body.name;
+  Products.deleteOne({name:name}, function(err,data){if (err){res.send('error')}
+      
+     res.render('admin-menu',{products, code:code,user:req.session.user,status:"success", msg:" ",alert:"none"});
+    });})
 
 
 
 
-
+  app.get('/', function(req,res){
+    res.render('index',{user:req.session.user});
+  if(user){console.log(user.email)}
+});
 
 app.get('/signup', function(req,res){
     res.render('signup',{ alert:"none", msg:"0"});
